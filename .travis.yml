@@ -1,8 +1,9 @@
 sudo: false
 language: ruby
 env:
-  - challenge_pg_user="challenge48h"
-  - challenge_pg_password="challenge48h"
+  global:
+    - challenge_pg_user="challenge48h"
+    - challenge_pg_password="challenge48h"
 rvm:
   - 2.3.0
 cache: bundler
