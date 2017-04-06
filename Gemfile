@@ -39,8 +39,11 @@ gem 'redis', '~> 3.0'
 # Use Figaro as the environment variables manager
 gem 'figaro'
 
-# Use devise for auth
+# Use devise for authentication
 gem 'devise'
+
+# CanCanCan for authorization
+gem 'cancancan', '~> 1.10'
 
 # Use bootstrap
 gem 'bootstrap', '~> 4.0.0.alpha3'
