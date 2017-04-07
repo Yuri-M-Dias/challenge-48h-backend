@@ -1,16 +1,15 @@
 # frozen_string_literal: true
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  belongs_to :trainer, :class_name => 'User', :foreign_key => 'trainer_id'
-  has_many :clients, :class_name => 'User', :foreign_key => 'trainer_id'
+  belongs_to :trainer, class_name: 'User', foreign_key: 'trainer_id'
+  has_many :clients, class_name: 'User', foreign_key: 'trainer_id'
 
   has_many :users_chat_rooms
-  has_many :chat_rooms, :through => :users_chat_rooms
+  has_many :chat_rooms, through: :users_chat_rooms
   has_many :messages, dependent: :destroy
+  has_many :receiving_chat_rooms, class_name: 'ChatRoom'
 
   def name
     email.split('@')[0]
@@ -34,4 +33,11 @@ class User < ApplicationRecord
     roles.include?(role)
   end
 
+  def trainer?
+    has_role?('trainer')
+  end
+
+  def user?
+    has_role?('user')
+  end
 end

@@ -1,10 +1,18 @@
 <h1>Add chat room</h1>
 
 <%= form_for @chat_room do |f| %>
+
     <div class="form-group">
-      <%= f.label :title %>
-      <%= f.text_field :title, autofocus: true, class: 'form-control' %>
+      <%= f.label :receiver %>
+      <%= collection_select(:receiver, :email, @users, :email, :email) %>
     </div>
 
-    <%= f.submit "Add!", class: 'btn btn-primary' %>
+    <div class="form-group">
+      <%= f.label :message %>
+      <%= text_area_tag(:message, '', size: '24x6', placeholder: 'Say hello!') %>
+    </div>
+
+    <%= f.hidden_field :title, :value => "#{current_user.name}_" %>
+
+    <%= f.submit "Start chat", class: 'btn btn-primary' %>
 <% end %>

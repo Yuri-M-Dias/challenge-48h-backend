@@ -1,17 +1,22 @@
 <h1>
-  <%= @chat_room.title %>
+  <% if @chat_room.receiver.email == current_user.email %>
+      <% target_user = @chat_room.user %>
+  <% else %>
+      <% target_user = @chat_room.receiver %>
+  <% end %>
+  <%= "Chat with: #{target_user.name}" %>
 </h1>
+
+<div id="messages" data-chat-room-id="<%= @chat_room.id %>">
+  <%= render @chat_room.messages %>
+</div>
 
 <%= form_for @message, url: '#' do |f| %>
     <div class="form-group">
-      <%= f.label :body %>
+      <%= f.label :message %>
       <%= f.text_area :body, class: 'form-control' %>
-      <small class="text-muted">From 2 to 1000 characters</small>
     </div>
 
     <%= f.submit "Post", class: 'btn btn-primary btn-lg' %>
 <% end %>
 
-<div id="messages" data-chat-room-id="<%= @chat_room.id %>">
-  <%= render @chat_room.messages %>
-</div>

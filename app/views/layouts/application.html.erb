@@ -10,10 +10,18 @@
 
   <body>
     <% if user_signed_in? %>
+      <div>
+        <b>Welcome <%= current_user.name %></b>
         <%= link_to "sign out",destroy_user_session_path, method: :delete   %>
         <%= link_to "Index", controller: 'home' %>
+      </div>
     <% end %>
     <br>
+
+    <% flash.each do |name, msg| -%>
+      <%= content_tag :div, msg, class: name %>
+    <% end -%>
+
     <%= yield %>
   </body>
 </html>

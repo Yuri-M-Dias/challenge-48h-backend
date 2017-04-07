@@ -7,13 +7,34 @@ class ChatRoomsController < ApplicationController
   end
 
   def new
+    @users = if current_user.trainer?
+               current_user.clients
+             else
+               User.all
+             end
     @chat_room = ChatRoom.new
   end
 
   def create
+    receiver_email = params[:receiver][:email]
+    receiver = User.find_by email: receiver_email
+    if receiver.nil?
+      flash[:error] = 'Receiver needs to exist!'
+      redirect_to chat_rooms_path
+    end
     @chat_room = current_user.chat_rooms.build(chat_room_params)
+    @chat_room.user = current_user
+    @chat_room.title << receiver.name
+    @chat_room.receiver = receiver
     if @chat_room.save
-      flash[:success] = 'Chat room added!'
+      add_user_to_chat_room current_user, @chat_room
+      add_user_to_chat_room receiver, @chat_room
+      Message.create!(
+        body: params[:message],
+        user: current_user,
+        chat_room: @chat_room
+      )
+      flash[:notice] = 'Chat room added!'
       redirect_to chat_rooms_path
     else
       render 'new'
@@ -25,10 +46,19 @@ class ChatRoomsController < ApplicationController
     @message = Message.new
   end
 
+  def destroy
+    @chat_room = ChatRoom.find_by(id: params[:id])
+    @chat_room.destroy
+    redirect_to chat_rooms_path
+  end
+
   private
 
   def chat_room_params
     params.require(:chat_room).permit(:title)
   end
 
+  def add_user_to_chat_room(user, chat_room)
+    UsersChatRoom.create!(user: user, chat_room: chat_room)
+  end
 end

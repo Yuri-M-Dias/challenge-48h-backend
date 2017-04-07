@@ -1,3 +1,7 @@
 <li>
-  <%= link_to "Enter #{chat_room.title}", chat_room_path(chat_room) %>
+  <% target_user = chat_room.receiver %>
+  <%= link_to "Chat with: #{target_user.name}", chat_room_path(chat_room) %>
+  <% if can? :delete, chat_room %>
+      <%= link_to "Delete", chat_room_path(chat_room), :method => :delete %>
+  <% end %>
 </li>

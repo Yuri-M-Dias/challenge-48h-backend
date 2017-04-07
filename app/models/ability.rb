@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Ability
   include CanCan::Ability
 
@@ -9,7 +10,6 @@ class Ability
     alias_action :create, :read, :update, :destroy, to: :crud
     can :manage, :all if user.has_role? :admin
     can :index, ChatRoom
-    puts "Roles:#{user.roles}"
     if user.has_role? :trainer or user.has_role? :user
       can :manage, ChatRoom, user_id: user.id
       can :read, ChatRoom do |chatRoom|
@@ -22,5 +22,4 @@ class Ability
       end
     end
   end
-
 end

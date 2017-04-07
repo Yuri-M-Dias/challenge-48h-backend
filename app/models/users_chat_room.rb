@@ -1,4 +1,5 @@
+# frozen_string_literal: true
 class UsersChatRoom < ApplicationRecord
-  belongs_to :user#, :inverse_of => :users_chat_rooms
-  belongs_to :chat_room#, :inverse_of => :users_chat_rooms
+  belongs_to :user
+  belongs_to :chat_room, dependent: :destroy
 end
