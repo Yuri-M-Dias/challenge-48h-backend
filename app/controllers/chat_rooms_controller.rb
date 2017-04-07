@@ -3,7 +3,7 @@ class ChatRoomsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @chat_rooms = ChatRoom.all
+    @chat_rooms = current_user.chat_rooms
   end
 
   def new
@@ -30,4 +30,5 @@ class ChatRoomsController < ApplicationController
   def chat_room_params
     params.require(:chat_room).permit(:title)
   end
+
 end
