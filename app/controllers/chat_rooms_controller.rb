@@ -7,11 +7,11 @@ class ChatRoomsController < ApplicationController
   end
 
   def new
-    @users = if current_user.trainer?
-               current_user.clients
-             else
-               User.all
-             end
+    if current_user.trainer?
+      @users = current_user.clients
+    else
+      @users = User.all
+    end
     @chat_room = ChatRoom.new
   end
 
