@@ -5,7 +5,13 @@ This is a project for an interview.
 
 ## Running the project
 
-First, you need to create the user with appropriate roles. This script
+If you have docker setup without a sudo password, you can use the provided script
+to create two containers with all that you need already:
+```bash
+$ bash docker-run-redis-and-pg.sh
+```
+
+Then you need to create the user with appropriate roles. This script
 will create the user with the default password and necessary roles, you
 just need to input your `postgres` user password when requested:
 ```bash
