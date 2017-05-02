@@ -4,10 +4,11 @@ set -e
 # This should be done with docker-compose, but not enough time
 
 DOCKER_REDIS_NAME=redis-48h
-DOCKER_POSTGRES_NAME=postgres-48h
 DOCKER_REDIS_PORT=6379
-DOCKER_PG_PORT=5432
 DOCKER_REDIS_HOST_STORAGE="/data/redis/48h"
+
+DOCKER_POSTGRES_NAME=postgres-48h
+DOCKER_PG_PORT=5432
 
 docker run --name "$DOCKER_POSTGRES_NAME" \
     -p "$DOCKER_PG_PORT":"$DOCKER_PG_PORT" \
