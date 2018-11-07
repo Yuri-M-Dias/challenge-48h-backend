@@ -9,7 +9,7 @@ end
 gem 'rails', '~> 5.0.2'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
-gem 'sass-rails', '~> 5.0', '>= 5.0.6'
+gem 'sass-rails', '~> 5.0', '>= 5.0.7'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2', '>= 4.2.1'
 # Not optimal, but necessary due to NVM's path issue
@@ -30,7 +30,7 @@ gem 'devise', '>= 4.2.1'
 gem 'cancancan', '~> 1.10'
 
 # Use bootstrap
-gem 'bootstrap', '~> 4.0.0.alpha3'
+gem 'bootstrap', '~> 4.0.0.0'
 
 group :development, :test do
   gem 'byebug', platform: :mri
