@@ -30,7 +30,7 @@ gem 'devise', '>= 4.2.1'
 gem 'cancancan', '~> 1.10'
 
 # Use bootstrap
-gem 'bootstrap', '~> 4.0.0.0'
+gem 'bootstrap', '~> 4.1.2.0'
 
 group :development, :test do
   gem 'byebug', platform: :mri
