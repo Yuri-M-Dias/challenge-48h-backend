@@ -15,7 +15,7 @@ gem 'coffee-rails', '~> 4.2', '>= 4.2.1'
 # Not optimal, but necessary due to NVM's path issue
 gem 'therubyracer', platforms: :ruby
 
-gem 'jquery-rails', '>= 4.3.1'
+gem 'jquery-rails', '>= 4.3.4'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'redis', '~> 3.0'
@@ -30,7 +30,7 @@ gem 'devise', '>= 4.2.1'
 gem 'cancancan', '~> 1.10'
 
 # Use bootstrap
-gem 'bootstrap', '~> 4.0.0.0'
+gem 'bootstrap', '~> 4.3.1.0'
 
 group :development, :test do
   gem 'byebug', platform: :mri
