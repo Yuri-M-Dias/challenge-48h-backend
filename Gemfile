@@ -24,7 +24,7 @@ gem 'redis', '~> 3.0'
 gem 'figaro'
 
 # Use devise for authentication
-gem 'devise', '>= 4.2.1'
+gem 'devise', '>= 4.7.1'
 
 # CanCanCan for authorization
 gem 'cancancan', '~> 1.10'
